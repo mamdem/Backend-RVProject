@@ -2,16 +2,14 @@ package com.example.bamsanteback.Controllers;
 
 import com.example.bamsanteback.Dao.NotificationDao;
 import com.example.bamsanteback.Entities.Notification;
-import com.example.bamsanteback.Entities.Personne;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 public class NotificationController {
     @Autowired
     private NotificationDao notificationDao;

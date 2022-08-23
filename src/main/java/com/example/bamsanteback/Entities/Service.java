@@ -1,5 +1,6 @@
 package com.example.bamsanteback.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,9 +19,11 @@ public class Service {
     private String nomservice;
     private String description;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "service")
-    private List<Personne> personneList;
+    private List<Medecin> medecinList;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idstructure")
     private Structure structure;

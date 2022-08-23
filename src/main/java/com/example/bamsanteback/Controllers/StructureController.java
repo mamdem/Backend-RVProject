@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 public class StructureController {
     @Autowired
     StructureDao structureDao;
@@ -21,11 +22,6 @@ public class StructureController {
         if(structure1 == null){
             return ResponseEntity.noContent().build();
         }
-//        URI location = ServletUriComponentsBuilder
-//                .fromCurrentRequest()
-//                .path("{/id}")
-//                .buildAndExpand(p.getIdpersonne())
-//                .toUri();
         return ResponseEntity.ok().body(structure1);
     }
 

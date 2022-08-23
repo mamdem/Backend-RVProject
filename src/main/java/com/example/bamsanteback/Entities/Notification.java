@@ -1,5 +1,6 @@
 package com.example.bamsanteback.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class Notification {
     private String contenu;
     private Integer etat;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idrdv")
     private Rendezvous rendezvous;

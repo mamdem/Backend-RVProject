@@ -4,25 +4,23 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
-public class Structure {
+public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idstructure;
-    private String nomstructure;
-    private Double latitude;
-    private Double longitude;
+    private Integer idadmin;
+    private String nom;
+    private String prenom;
+    private String email;
+    private String mdp;
+    private String tel;
 
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "structure")
-    private List<Service> serviceList;
-
+    @ManyToOne
+    @JoinColumn(name = "idstructure")
+    private Structure structure;
 }
