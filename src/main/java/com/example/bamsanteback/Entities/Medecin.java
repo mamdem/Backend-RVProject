@@ -30,6 +30,8 @@ public class Medecin {
     @JsonView(View.MedecinView.class)
     private String tel;
     @JsonView(View.MedecinView.class)
+    private String genre;
+    @JsonView(View.MedecinView.class)
     private String profil;
 
     @JsonIgnore

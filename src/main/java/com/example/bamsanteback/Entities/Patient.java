@@ -29,8 +29,17 @@ public class Patient {
     private String mdp;
     @JsonView(View.PatientView.class)
     private String tel;
+    @JsonView(View.PatientView.class)
+    private String genre;
+    @JsonView(View.PatientView.class)
+    private String biographie;
+    @JsonView(View.PatientView.class)
+    private String clinique;
+    @JsonView(View.PatientView.class)
+    private String profil;
 
 
+    @JsonIgnore
     @OneToMany(mappedBy = "patient")
     private List<Rendezvous> rendezvous;
 }
