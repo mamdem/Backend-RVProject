@@ -6,15 +6,19 @@ import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
-public class Medecin {
+@ToString
+public class Medecin implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonView(View.MedecinView.class)
@@ -32,16 +36,21 @@ public class Medecin {
     @JsonView(View.MedecinView.class)
     private String genre;
     @JsonView(View.MedecinView.class)
+    private String biographie;
+    private Date date;
+    @JsonView(View.MedecinView.class)
     private String profil;
-
     @JsonIgnore
     @OneToMany(mappedBy = "medecin")
     private List<Rendezvous> rendezvousList;
 
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idservice")
     private Service service;
 
-
+    //@JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "structure")
+    private Structure structure;
 }

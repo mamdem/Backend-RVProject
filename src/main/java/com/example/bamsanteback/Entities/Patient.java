@@ -32,10 +32,6 @@ public class Patient {
     @JsonView(View.PatientView.class)
     private String genre;
     @JsonView(View.PatientView.class)
-    private String biographie;
-    @JsonView(View.PatientView.class)
-    private String clinique;
-    @JsonView(View.PatientView.class)
     private String profil;
 
 

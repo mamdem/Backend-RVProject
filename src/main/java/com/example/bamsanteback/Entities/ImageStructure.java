@@ -4,29 +4,26 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.List;
+import java.io.Serializable;
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
-public class Structure {
+@ToString
+public class ImageStructure implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idImage;
     private String nom;
-    private String adresse;
-    private Double latitude;
-    private Double longitude;
-
+    private Date dateSave;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "structure")
-    private List<Service> serviceList;
-
-    @OneToMany(mappedBy = "structure")
-    private List<ImageStructure> imageStructures;
-
+    @ManyToOne
+    @JoinColumn(name = "structure")
+    private Structure structure;
 }
