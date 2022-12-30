@@ -15,16 +15,13 @@ import java.util.List;
 public class Structure {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idstructure;
     private String nom;
     private String adresse;
     private Double latitude;
     private Double longitude;
 
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "structure")
-    private List<Service> serviceList;
 
     @OneToMany(mappedBy = "structure")
     private List<ImageStructure> imageStructures;

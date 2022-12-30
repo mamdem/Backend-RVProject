@@ -45,12 +45,13 @@ public class Medecin implements Serializable {
     private List<Rendezvous> rendezvousList;
 
     //@JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "idservice")
     private Service service;
 
     //@JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "structure")
+    @JoinColumn(name = "idstructure")
     private Structure structure;
 }

@@ -21,8 +21,21 @@ public interface RendezvousDao extends JpaRepository<Rendezvous,Integer> {
     List<Rendezvous> getAllRVBeetweenByMedecin(String idmedecin, String firstdate, String lastdate);
 
     @Resource
-    @Query(value="select rv.* from rendezvous rv where rv.idrdv not in (select r.idrdv from reservation r where r.idpatient=:patient) and rv.datecreation BETWEEN :firstdate and :lastdate", nativeQuery = true)
-    List<Rendezvous> getAllRVBeetween(Integer patient,String firstdate, String lastdate);
+    @Query(value="select rv.* from rendezvous rv where rv.idrdv not in (select r.idrdv from reservation r where r.idpatient=:patient) and rv.datecreation >= now() order by rand()", nativeQuery = true)
+    List<Rendezvous> getAllRVBeetween(Integer patient);
+
+    @Resource
+    @Query(value="select rv.* from rendezvous rv where rv.idmedecin=:idmedecin and rv.idrdv not in (select r.idrdv from reservation r where r.idpatient=:patient) and rv.datecreation >= now() order by rand()", nativeQuery = true)
+    List<Rendezvous> getAllRVBeetweenByMedecin(Integer patient, Integer idmedecin);
+
+    @Resource
+    @Query(value="select rv.* from rendezvous rv where rv.datecreation < now() and rv.idpatient=:patient", nativeQuery = true)
+    List<Rendezvous> getRVHistories(Integer patient);
+
+
+    @Resource
+    @Query(value = "SELECT * from rendezvous where datecreation=CURRENT_DATE and idmedecin=:idmedecin and idpatient not null", nativeQuery = true)
+    List<Rendezvous> getRvToday(Integer idmedecin);
 
     @Resource
     @Query(value="SELECT * FROM `rendezvous` rv where rv.idpatient is null and idrdv not in (SELECT idrdv FROM reservation WHERE idpatient=:idpatient)", nativeQuery = true)

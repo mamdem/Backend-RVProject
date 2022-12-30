@@ -23,8 +23,4 @@ public class Service {
     @OneToMany(mappedBy = "service")
     private List<Medecin> medecinList;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "idstructure")
-    private Structure structure;
 }

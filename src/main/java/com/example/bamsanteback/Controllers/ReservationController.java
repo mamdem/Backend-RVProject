@@ -30,4 +30,10 @@ public class ReservationController {
     List<Reservation> getAllReservationByMedecin(@PathVariable Integer idmedecin){
         return reservationDao.getAllReservationByMedecin(idmedecin);
     }
+
+    @DeleteMapping(value = "/reservation/{idreservation}/{idpatient}")
+    Boolean deleteReservation(@PathVariable Integer idreservation, @PathVariable Integer idpatient){
+        reservationDao.deleteReservationByIdrdv(idreservation, idpatient);
+        return true;
+    }
 }

@@ -19,7 +19,7 @@ public class MedecinController {
     MedecinDao medecinDao;
     @Autowired
     StructureDao structureDao;
-    public String DIRECTORY="C:/Users/MHD/Desktop/BamTech/medecinProject/src/assets/imguploaded/";
+    public String DIRECTORY="C:/wamp64/www/imguploaded/";
 
     @PostMapping(value = "/medecin/add")
     public ResponseEntity<Medecin> addPersonne (@RequestBody Medecin medecin)
@@ -31,10 +31,10 @@ public class MedecinController {
         return ResponseEntity.ok().body(medecin1);
     }
 
-    @GetMapping(value = "/medecins")
-    @JsonView(View.MedecinView.class)
+    @GetMapping(value = "/medecin/all")
+    //@JsonView(View.MedecinView.class)
     public List<Medecin> getMedecins(){
-        return medecinDao.findAll();
+        return medecinDao.getAllMedecinByRand();
     }
 
     @GetMapping(value = "/medecin/{id}")
@@ -51,6 +51,7 @@ public class MedecinController {
     public Medecin updateMedecin(@RequestBody Medecin medecin, @PathVariable Integer idmedecin){
         medecin.setProfil(uploadBase64String(medecin.getProfil(), medecin.getIdmedecin()));
         structureDao.saveAndFlush(medecin.getStructure());
+        medecin.setIdmedecin(idmedecin);
         return medecinDao.saveAndFlush(medecin);
     }
 

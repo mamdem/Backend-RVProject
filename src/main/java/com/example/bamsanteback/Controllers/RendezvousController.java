@@ -68,9 +68,21 @@ public class RendezvousController {
         return rendezvousDao.getAllRVBeetweenByMedecin(idmedecin,firstdate, lastdate);
     }
 
-    @GetMapping("/rendezvous/all/patient/{idpatient}/{firstdate}/{lastdate}")
-    public List<Rendezvous> getRendezBetween(@PathVariable Integer idpatient,  @PathVariable String firstdate, @PathVariable String lastdate){
-        return rendezvousDao.getAllRVBeetween(idpatient,firstdate,lastdate);
+
+
+    @GetMapping("/rendezvous/today/{idmedecin}")
+    public List<Rendezvous> getRvToday(@PathVariable Integer idmedecin){
+        return rendezvousDao.getRvToday(idmedecin);
+    }
+
+    @GetMapping("/rendezvous/all/patient/{idpatient}")
+    public List<Rendezvous> getRendezBetween(@PathVariable Integer idpatient){
+        return rendezvousDao.getAllRVBeetween(idpatient);
+    }
+
+    @GetMapping("/rendezvous/all/patient/{idpatient}/{idmedecin}")
+    public List<Rendezvous> getRendezBetweenByMedecin(@PathVariable Integer idpatient, @PathVariable Integer idmedecin){
+        return rendezvousDao.getAllRVBeetweenByMedecin(idpatient, idmedecin);
     }
 
     @PostMapping("/rendezvous/available/")
@@ -144,4 +156,8 @@ public class RendezvousController {
         return true;
     }
 
+    @GetMapping("/rendezvous/historique/{idpatient}")
+    public List<Rendezvous> getRendezVousHistories(@PathVariable Integer idpatient){
+        return rendezvousDao.getRVHistories(idpatient);
+    }
 };
